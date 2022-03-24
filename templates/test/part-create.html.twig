@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>{{ title }}! ✅</h1>
+ {% if type == 'chassie' %}
+ <h2> Nouveau chassis crée </h2>
+ <p>  largeur: {{part.largeur}} x longueur{{part.longueur}} </p>
+  {% endif %}
+ {% if type == 'moteur' %}
+ <h2> Nouveau moteur crée </h2>
+ <ul>
+      <li> Puissance: {{part.puissance}} </li> 
+      <li> Energie : {{part.energie}} </li> 
+</ul>
+{% endif %}
+</div>
+
+
+{% endblock %}

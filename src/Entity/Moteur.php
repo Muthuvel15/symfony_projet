@@ -27,6 +27,11 @@ class Moteur
      */
     private $puissance;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $no_serie;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Moteur
     public function setPuissance(int $puissance): self
     {
         $this->puissance = $puissance;
+
+        return $this;
+    }
+
+    public function getNoSerie(): ?string
+    {
+        return $this->no_serie;
+    }
+
+    public function setNoSerie(string $no_serie): self
+    {
+        $this->no_serie = $no_serie;
 
         return $this;
     }
