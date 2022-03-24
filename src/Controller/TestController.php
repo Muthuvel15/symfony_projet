@@ -26,11 +26,19 @@ class TestController extends AbstractController
      */
     public function liste(): Response
     {
+        $boucle = [
+            0 => 'Peugeot 208',
+            1 => 'Fiat 500',
+            2 => 'Tesla Model 3',
+            3 => 'Ford',
+            4 => 'MG',
+
+        ];
         return $this->render('test/liste.html.twig', [
-            'title' => 'Liste',
+            'title' => 'Liste de vehicule',
             'nom' =>'toto',
             'prenom'=>'titi',
-            'liste'=>['1','2','3','4','5'],
+            'listes'=> $boucle,
         ]);
     }
 }

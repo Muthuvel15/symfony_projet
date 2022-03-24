@@ -5,10 +5,10 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <h1>Hello {{ title }}! ✅</h1>
+    <h1>{{ title }}! ✅</h1>
 <ul>
-        {% for i,item in liste %}
-            <li>{{item}}</li>
+        {% for i,liste in listes %}
+            <li>{{liste}}</li>
         {% endfor %}
 </ul>
 </div>
