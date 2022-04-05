@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\ChassisFormType;
 
 
 class VehiculeFormType extends AbstractType
@@ -17,7 +18,7 @@ class VehiculeFormType extends AbstractType
     {
         $builder
             ->add('modele')
-            ->add('chassis')
+            ->add('chassis', ChassisFormType::class)
             //->add('roues')
             //->add(''moteur')
             ->add('save', SubmitType::class);
