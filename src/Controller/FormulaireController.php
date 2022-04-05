@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\MoteurFormType;
-
+use App\Form\ClientFormType;
+use App\Form\RoueFormType;
+use App\Form\VehiculeFormType;
 
 /* Formulaire */
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -22,6 +24,7 @@ use App\Entity\Roue;
 use App\Entity\Chassis;
 use App\Entity\Moteur;
 use App\Entity\Couleur;
+use App\Entity\Vehicule;
 
 
 
@@ -175,6 +178,42 @@ class FormulaireController extends AbstractController
         }
 
         return $this->render('formulaire/form-moteur.html.twig',[
+             'form' => $form->createView(),
+             'message'=>$message,
+             
+        ]);
+    }  
+    
+    
+
+
+    /**
+     * @Route("/new_vehicule", name="new_vehicule")
+     */
+    public function newVehicule(Request $request)
+    {
+        $vehicule = new Vehicule();
+
+        $formBuilder = $this->get('form.factory')->createBuilder(VehiculeFormType::class, $vehicule);       
+     
+        $form = $formBuilder->getForm();
+        // On récupére les données transmises 
+        if ($request->isMethod('POST'))
+        {
+            $form->handleRequest($request);
+            $roue = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($vehicule);
+            $entityManager->flush();
+
+            $message = 'Nouveau véhicule enregistré';
+            
+        }else {
+            $message = 'Erreur';
+        }
+
+        return $this->render('formulaire/form-vehicule.html.twig',[
              'form' => $form->createView(),
              'message'=>$message,
              

@@ -30,8 +30,9 @@ class Vehicule
     private $chassis;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Roue::class, inversedBy="vehicules")
+     * @ORM\ManyToMany(targetEntity=Roue::class,inversedBy="vehicules")
      */
+    /* inversedBy="vehicules" */
     private $roues;
 
     /**
