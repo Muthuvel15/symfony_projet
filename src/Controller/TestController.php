@@ -5,11 +5,18 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+/* Formulaire */
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
  
 /* mettre les entity dans le controller */
 use App\Entity\Roue;
 use App\Entity\Chassis;
 use App\Entity\Moteur;
+use App\Entity\Couleur;
 
 class TestController extends AbstractController
 {
@@ -121,7 +128,29 @@ class TestController extends AbstractController
             'part'=> $maMoteur,
         ]);
     }
-     
+
+     /**
+     * @Route("/couleur_vehicule/{nom}", name="addCouleur")
+     */
+    public function addCouleur($nom): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        
+        $maCouleur = new Couleur();
+        $maCouleur->setNom($nom);
+        
+        $entityManager->persist($maCouleur);
+    
+        $entityManager->flush();
+        /* les donnnes sont envoyé au BDD */
+        
+        /*return new Response ('Nouvelle roue créée :'.$maRoue->getId());*/
+        return $this->render('test/couleur-vehicule.html.twig', [
+            'title' => 'Création d\' un Couleur',
+            'nom_couleur'=> $maCouleur,
+        ]);
+    }
+    
     
      
     
